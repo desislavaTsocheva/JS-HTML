@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Калкулатор</title>
+
+    <style>
+        form {
+            background-color: #b5acac;
+            width: 30%;
+            height: 340px;
+            padding: 5px;
+        }
+
+        fieldset {
+            width: 40%;
+        }
+
+        h2 {
+            text-align: center;
+            font-style: italic;
+        }
+    </style>
+
+    <script>
+
+        function calc() {
+            var num1 = parseInt(document.f.number1.value);
+            var num2 = parseInt(document.f.number2.value);
+            var result = 0;
+            var print = document.getElementById("res");
+            var operation = document.f.operation.value;
+            /*  alert(operation);*/
+            switch (operation) {
+                case '+': result = num1 + num2; break;
+                case '-': result = num1 - num2; break;
+                case '*': result = num1 * num2; break;
+                case '/':
+                    if (num2 === 0) {
+                        print.value = 'На нула не се дели ... '; return;
+                        print.style = "color: red";
+                    }
+                    else {
+                        result = num1 / num2; break;
+                    }
+            
+            }
+            document.f.result.value = result.toFixed(2);
+
+
+        }
+
+
+    </script>
+</head>
+<body>
+    <form name="f">
+        <h2>Калкулатор</h2>
+        <label for="num1">Число 1</label>
+        <input type="text" name="number1" id="num1"> <br /> <br />
+        <label for="num2">Число 2</label>
+        <input type="text" name="number2" id="num2"> <br /> <br />
+
+
+        <fieldset>
+            <input type="radio" name="operation" id="r1" value="+">
+            <label for="r1">Събиране</label> <br />
+
+            <input type="radio" name="operation" id="r2" value="-">
+            <label for="r2">Изваждане</label> <br />
+
+            <input type="radio" name="operation" id="r3" value="*">
+            <label for="r3">Умножение</label> <br />
+
+            <input type="radio" name="operation" id="r4" value="/">
+            <label for="r4">Деление</label> <br />
+
+
+        </fieldset> <br />
+        <label for="res">Резултат</label>
+        <input type="text" name="result" id="res" readonly> <br />    <br />
+
+        <input type="button" name="send" value="Пресметни" onclick="calc()" />
+        <input type="reset" name="reset" value="Изчисти" />
+
+    </form>
+</body>
+</html>
