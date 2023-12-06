@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>POZNAI CHISLOTUU</title>
+    <style>
+        form {
+            width: 40%;
+            height: 200px;
+            background-color: #8d8484;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form name="f">
+        <label>Въведи число от 1 до 100:</label>
+        <input type="password" name="hostNum" />
+        <br />
+        <br />
+        <label>Познай числото:</label>
+        <input type="text" name="currentNum" />
+
+        <input type="text" name="mess" id="message" readonly="readonly" />
+        <br />
+        <br />
+        <input type="text" name="messResult" readonly="readonly" />
+        <br />
+        <br />
+        <input type="reset" value="Нова игра" onclick="reLoad() " />
+
+        <input type="button" value="Провери" onclick="verify()" />
+
+    </form>
+    <script>
+        var counter = 0;
+
+        function reLoad() {
+            document.f.hostNum.focus();
+            var rndNumber = Math.floor(Math.random() * 100 + 1);
+            f.hostNumber = rndNumber;
+        }
+
+        function verify() {
+
+            var number1 = f.hostNum.value;
+            var number2 = f.currentNum.value;
+            var messageBox = document.getElementById("message");
+
+           /* alert(currentNumber);*/
+            if (number1 === "" || number2 === "") {
+                alert("ВЪВЕДИ ЧИСЛО !!!?? ");
+                return;
+            }
+
+
+            counter++;
+            if (number2 > number1) {
+                messageBox.value = "Надолу";
+            }
+            else if (number2 < number1) {
+                messageBox.value = "Нагоре";
+            } else {
+                f.mess.value = "БРАВО БЕЕ";
+                f.mess.style = "color:red;font-wight=bold;";
+                f.messResult.value = "Позна от " + counter + " път";
+            }
+        }
+
+    </script>
+</body>
+</html>
