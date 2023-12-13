@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>REGISTRATION FORM</title>
+    <style>
+        form {
+            width: 30%;
+            height: 400px;
+            margin: 20px;
+            padding: 30px;
+            background-color: #f4efcb;
+        }
+
+        fieldset {
+            width: 40%;
+        }
+    </style>
+    <script>
+        function printInfo() {
+            var name = document.f.name.value;
+            var surname = document.f.surname.value;
+            var egn = document.f.egn.value;
+            var gender = document.f.pol.value;
+            var occupations = document.f.occupation.value;
+
+            if (egn == '' ) {
+                alert("Въведи егн!!!"); return;
+            }
+            var result = '';
+            switch (occupations) {
+                case 'worker': result = 'Работещ'; break;
+                case 'pension': result = 'Пенсионер'; break;
+                case 'student': result = 'Ученик'; break;
+            }
+            var resultg = '';
+            //alert(gender.checked);
+            if (gender.checked==false) {
+                resultg = 'Жена';
+            }
+            else {
+                resultg = 'Мъж';
+            }
+            alert("Име: " + name + "\n" + " Фамилия: " + surname + "\n" + " ЕГН: " + egn + "\n" + " Заетост: " + result + "\n" + " Пол: " + resultg);
+        }
+    </script>
+</head>
+
+<body>
+   
+    <form name="f" method="get">
+        <label for="f-name">ИМЕ</label>
+        <input type="text" name="name" id="f-name" placeholder="enter your name" /> <br />    <br />
+        <label for="f-surname">ФАМИЛИЯ</label>
+        <input type="text" name="surname" id="f-surname" placeholder="enter your age" /> <br />    <br />
+        <label for="f-egn">ЕГН</label>
+        <input type="text" name="egn" id="f-egn" pattern="[0-9]{10}" placeholder="enter valid egn"  /> <br />    <br />
+        <fieldset>
+            <legend>ЗАЕТОСТ</legend>
+            <input type="radio" value="worker" name="occupation" id="work" />
+            <label for="work">РАБОТЕЩ</label> <br />
+            <input type="radio" value="pension" name="occupation" id="pensioner" />
+            <label for="pensioner">ПЕНСИОНЕР</label> <br />
+            <input type="radio" value="student" name="occupation" id="students" />
+            <label for="students">УЧЕНИК</label>
+        </fieldset>
+        <br />  <br />
+        <fieldset>
+            <legend>ПОЛ</legend>
+            <input type="checkbox" name="pol" id="gender" checked />
+            <label for="gender">МЪЖ</label>
+        </fieldset>
+        <br />  <br />
+        <input type="submit" value="Изпрати" onclick="printInfo()">
+        <!--<button type="submit" onclick="printInfo()">ИЗПРАТИ</button>-->
+        <input type="reset" value="Изчисти" />
+    </form>
+</body>
+</html>
